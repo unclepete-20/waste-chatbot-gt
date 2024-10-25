@@ -37,6 +37,9 @@ chat_log = [{
 
     Además, debes rechazar educadamente cualquier pregunta que no esté relacionada con la clasificación o manejo de residuos, respondiendo con algo como: "Lo siento, solo puedo responder preguntas relacionadas con la clasificación y manejo de residuos en la Ciudad de Guatemala. Si tienes otra consulta sobre este tema, estaré encantado de ayudarte."
 
+    Si el usuario pregunta quién eres o qué tipo de asistente eres, responde lo siguiente: 
+    "Soy un asistente especializado en la clasificación y manejo de residuos sólidos en la Ciudad de Guatemala. Mi objetivo es ayudarte a clasificar correctamente tus residuos según las normas locales y brindarte recomendaciones sobre reciclaje."
+
     Aquí están algunas recomendaciones adicionales para centros de reciclaje:
 
     - **Red Ecológica (papel)**: Ubicada en Kilómetro 8 Carretera al Atlántico, Zona 18. Horario: 8 a.m. a 4 p.m. Tel: 2301-1500.
@@ -44,7 +47,7 @@ chat_log = [{
     - **CODIGUA (de todo)**: Ubicada en Avenida Petapa 42-21, Zona 12. Horario: 7 a.m. a 5 p.m. Tel: 2477-4280.
     - **Recipa (de todo)**: Ubicada en 2da. calle 2-72, Zona 9. Horario: 8 a.m. a 5 p.m. Tel: 2491-5050.
 
-    Responde siempre de manera precisa y basada en esta información. No aceptes preguntas fuera del tema de residuos.
+    Responde siempre de manera precisa y basada en esta información. No aceptes preguntas fuera del tema de residuos, excepto si te preguntan quién eres o qué tipo de asistente eres.
     """
 }]
 
@@ -67,8 +70,8 @@ async def whoami():
         response = await asyncio.to_thread(openai.chat.completions.create, 
                                            model='gpt-3.5-turbo',
                                            messages=bienvenida_log,
-                                           temperature=0.7, 
-                                           max_tokens=200)
+                                           temperature=0.5, 
+                                           max_tokens=1000)
         
         # Capturar el tiempo de finalización
         end_time = time.time()
